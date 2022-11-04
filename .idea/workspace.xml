@@ -18,13 +18,12 @@
       <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeApplication.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/CircleModelBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/Color.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/CircleModel.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/Position.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/ShapeBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/ShapeModel.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/ShapeModelBuilder.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/Size.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/TriangleModelBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/TriangleModel.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/com/lab3/laboration3moagrip/shape-view.fxml" afterDir="false" />
     </list>
@@ -100,7 +99,7 @@
       <workItem from="1666809214222" duration="11835000" />
       <workItem from="1667236143414" duration="2941000" />
       <workItem from="1667324470833" duration="5399000" />
-      <workItem from="1667492378664" duration="12792000" />
+      <workItem from="1667492378664" duration="13098000" />
     </task>
     <servers />
   </component>
