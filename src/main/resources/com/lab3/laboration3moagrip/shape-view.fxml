@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:id="anchorPane" fx:controller="com.lab3.laboration3moagrip.ShapeController">
+   <Canvas fx:id="canvas" onMouseClicked="#drawShape"/>
+   <HBox fx:id="hBox" alignment="TOP_CENTER" prefHeight="10.0" spacing="10.0">
+      <RadioButton mnemonicParsing="false" fx:id="triangle" text="Triangle" />
+      <RadioButton mnemonicParsing="false" fx:id="circle" text="Circle" />
+      <CheckBox mnemonicParsing="false" fx:id="selectMode" text="Select"/>
+      <ColorPicker prefWidth="70.0" fx:id="colorPicker" />
+      <ChoiceBox prefWidth="50.0" fx:id="choiceBox" />
+      <padding>
+         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </padding>
+   </HBox>
+</AnchorPane>
