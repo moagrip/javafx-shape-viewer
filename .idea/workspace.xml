@@ -5,27 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ac8072d-3b48-4435-839c-b2c3b3fcabaa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/CircleModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/Position.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/ShapeModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/ShapeModelBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/Size.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/TriangleModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/lab3/laboration3moagrip/shape-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lab3/laboration3moagrip/shape-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lab3/laboration3moagrip/shape-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,16 +36,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ShapeApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.lab3.laboration3moagrip.ShapeApplication" />
@@ -99,7 +81,8 @@
       <workItem from="1666809214222" duration="11835000" />
       <workItem from="1667236143414" duration="2941000" />
       <workItem from="1667324470833" duration="5399000" />
-      <workItem from="1667492378664" duration="13098000" />
+      <workItem from="1667492378664" duration="13734000" />
+      <workItem from="1667553606023" duration="6814000" />
     </task>
     <servers />
   </component>
@@ -122,18 +105,23 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java</url>
-          <line>128</line>
+          <line>215</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java</url>
-          <line>187</line>
+          <line>274</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java</url>
-          <line>205</line>
-          <option name="timeStamp" value="5" />
+          <line>128</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java</url>
+          <line>137</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
