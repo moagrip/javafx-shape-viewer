@@ -1,8 +1,6 @@
 package com.lab3.laboration3moagrip;
 
 import com.lab3.laboration3moagrip.models.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,7 +17,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import javafx.stage.FileChooser;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -36,7 +33,6 @@ public class ShapeController {
     public RadioButton circleButton;
     public CheckBox selectMode;
     public Button saveButton;
-    private ObservableList<Size> sizes;
     private Group shapes;
     private Shape selectedShape;
     private double applicationHeight;
@@ -79,23 +75,21 @@ public class ShapeController {
     }
 
     private void prepareSaveButton() {
-        saveButton.setOnAction(actionEvent -> saveToSvg(actionEvent));
+        saveButton.setOnAction(this::saveToSvg);
     }
 
     private String polygonToPointsString(Polygon polygon) {
-        StringBuffer sb = new StringBuffer();
-        sb.append(polygon.getPoints().get(0));
-        sb.append(",");
-        sb.append(polygon.getPoints().get(1));
-        sb.append(" ");
-        sb.append(polygon.getPoints().get(2));
-        sb.append(",");
-        sb.append(polygon.getPoints().get(3));
-        sb.append(" ");
-        sb.append(polygon.getPoints().get(4));
-        sb.append(",");
-        sb.append(polygon.getPoints().get(5));
-        return sb.toString();
+        return polygon.getPoints().get(0) +
+                "," +
+                polygon.getPoints().get(1) +
+                " " +
+                polygon.getPoints().get(2) +
+                "," +
+                polygon.getPoints().get(3) +
+                " " +
+                polygon.getPoints().get(4) +
+                "," +
+                polygon.getPoints().get(5);
     }
 
     private void saveToSvg(ActionEvent e) {
@@ -108,38 +102,41 @@ public class ShapeController {
 
         if (file == null) return;
 
-        StringBuffer outPut = new StringBuffer();
-        outPut.append("<svg  version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">");
+        StringBuilder svgData = new StringBuilder();
+        svgData.append("<svg  version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">");
         for (Node node : shapes.getChildren()) {
             Shape shape = (Shape) node;
             Color color = (Color) shape.getFill();
-            if (shape instanceof Circle) {
-                Circle circle = (Circle) shape;
-                outPut.append(
-                        "<circle cx=\"" + circle.getCenterX() +
-                                "\" cy=\"" + circle.getCenterY() +
-                                "\" r=\"" + circle.getRadius() +
-                                "\" fill=\"" + toHexString(color) +
-                                "\" stroke=\"" + toHexString(Color.BLACK) +
-                                "\"/>"
-                );
+            if (shape instanceof Circle circle) {
+                svgData.append("<circle cx=\"")
+                        .append(circle.getCenterX())
+                        .append("\" cy=\"")
+                        .append(circle.getCenterY())
+                        .append("\" r=\"")
+                        .append(circle.getRadius())
+                        .append("\" fill=\"")
+                        .append(toHexString(color))
+                        .append("\" stroke=\"")
+                        .append(toHexString(Color.BLACK))
+                        .append("\"/>");
             } else if (shape instanceof Polygon) {
                 String points = polygonToPointsString((Polygon) shape);
-                outPut.append(
-                        "<polygon points=\"" + points +
-                                "\" fill=\"" + toHexString(color) +
-                                "\" stroke=\"" + toHexString(Color.BLACK) +
-                                "\"/>"
-                );
+                svgData.append("<polygon points=\"")
+                        .append(points)
+                        .append("\" fill=\"")
+                        .append(toHexString(color))
+                        .append("\" stroke=\"")
+                        .append(toHexString(Color.BLACK))
+                        .append("\"/>");
             } else {
                 continue;
             }
-            outPut.append("\n");
+            svgData.append("\n");
         }
-        outPut.append("</svg>");
+        svgData.append("</svg>");
 
         try {
-            Files.writeString(file.toPath(), outPut.toString());
+            Files.writeString(file.toPath(), svgData.toString());
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -158,23 +155,15 @@ public class ShapeController {
     private void prepareColorPicker() {
         colorPicker.setValue(Color.LIGHTBLUE);
         colorPicker.valueProperty().addListener(
-                new ChangeListener<Color>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Color> observableValue, Color color, Color t1) {
-                        onChange();
-                    }
-                }
+                (observableValue, color, t1) -> onChange()
         );
     }
 
     private void prepareSelectMode() {
         selectMode.selectedProperty().addListener(
-                new ChangeListener<Boolean>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                        if (observable.getValue() == false) {
-                            deselectSelectedShape();
-                        }
+                (observable, oldValue, newValue) -> {
+                    if (observable.getValue() == false) {
+                        deselectSelectedShape();
                     }
                 });
     }
@@ -185,26 +174,16 @@ public class ShapeController {
         circleButton.setToggleGroup(radioButtons);
         triangleButton.setToggleGroup(radioButtons);
         radioButtons.selectedToggleProperty().addListener(
-                new ChangeListener<Toggle>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
-                        onChange();
-                    }
-                }
+                (observableValue, toggle, t1) -> onChange()
         );
     }
 
     private void prepareChoiceBox() {
-        sizes = FXCollections.observableArrayList(Size.values());
+        ObservableList<Size> sizes = FXCollections.observableArrayList(Size.values());
         choiceBox.setItems(sizes);
         choiceBox.setValue(Size.SMALL);
         choiceBox.getSelectionModel().selectedItemProperty().addListener(
-                new ChangeListener<Size>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Size> observable, Size size, Size t1) {
-                        onChange();
-                    }
-                }
+                (observable, size, t1) -> onChange()
         );
     }
 
@@ -320,6 +299,7 @@ public class ShapeController {
     private void deselectSelectedShape() {
         if (selectedShape != null) {
             selectedShape.setStroke(Color.BLACK);
+            selectedShape = null;
         }
     }
 }

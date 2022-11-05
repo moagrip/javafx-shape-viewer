@@ -7,7 +7,6 @@
     <list default="true" id="3ac8072d-3b48-4435-839c-b2c3b3fcabaa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lab3/laboration3moagrip/shape-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lab3/laboration3moagrip/shape-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +81,7 @@
       <workItem from="1667236143414" duration="2941000" />
       <workItem from="1667324470833" duration="5399000" />
       <workItem from="1667492378664" duration="13734000" />
-      <workItem from="1667553606023" duration="6814000" />
+      <workItem from="1667553606023" duration="7831000" />
     </task>
     <servers />
   </component>
@@ -105,23 +104,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java</url>
-          <line>215</line>
+          <line>193</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java</url>
-          <line>274</line>
+          <line>252</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java</url>
-          <line>128</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java</url>
-          <line>137</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
