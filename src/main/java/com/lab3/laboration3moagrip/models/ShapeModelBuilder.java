@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 
 public class ShapeModelBuilder {
 
-    private javafx.scene.paint.Color color;
+    private Color color;
     private Position position;
     private Size size;
 
@@ -20,18 +20,11 @@ public class ShapeModelBuilder {
     }
 
     public ShapeModel build() {
-        switch (shape.toLowerCase()) {
-            case "triangle":
-                return new TriangleModel(this);
-            case "circle":
-                return new CircleModel(this);
-            default:
-                throw new Error("Something went wrong during Shape creation");
-        }
-    }
-
-    public String getShape() {
-        return shape;
+        return switch (shape.toLowerCase()) {
+            case "triangle" -> new TriangleModel(this);
+            case "circle" -> new CircleModel(this);
+            default -> throw new Error("Something went wrong during Shape creation");
+        };
     }
 
     public Color getColor() {

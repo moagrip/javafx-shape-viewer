@@ -37,12 +37,14 @@ public class ShapeController {
     private Shape selectedShape;
     private double applicationHeight;
     private double applicationWidth;
+    private boolean selectInProgress;
 
     public void initialize() {
         shapes = new Group();
         anchorPane.getChildren().add(shapes);
         applicationWidth = 800;
         applicationHeight = 400;
+        selectInProgress = false;
         anchorPane.setPrefHeight(applicationHeight);
         anchorPane.setPrefWidth(applicationWidth);
         prepareBackground();
@@ -99,7 +101,6 @@ public class ShapeController {
         fileChooser.getExtensionFilters().clear();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("SVG", "*.svg"));
         File file = fileChooser.showSaveDialog(anchorPane.getScene().getWindow());
-
         if (file == null) return;
 
         StringBuilder svgData = new StringBuilder();
@@ -190,6 +191,7 @@ public class ShapeController {
     private void onChange() {
         if (!selectMode.isSelected()) return;
         if (selectedShape == null) return;
+        if (selectInProgress) return;
         shapes.getChildren().remove(selectedShape);
         drawShape(selectedShape);
     }
@@ -202,10 +204,9 @@ public class ShapeController {
         }
     }
 
-
     private void renderTriangle(TriangleModel triangleModel) {
-        Position p1 = triangleModel.getPosition().increaseX(triangleModel.getSizeInt());
-        Position p2 = triangleModel.getPosition().increaseY(triangleModel.getSizeInt());
+        Position p1 = triangleModel.getPosition().increaseX(triangleModel.getSize().getValue());
+        Position p2 = triangleModel.getPosition().increaseY(triangleModel.getSize().getValue());
         Double[] positions = new Double[]{
                 triangleModel.getPosition().x(),
                 triangleModel.getPosition().y(),
@@ -226,7 +227,7 @@ public class ShapeController {
         Circle c = new Circle(
                 circleModel.getPosition().x(),
                 circleModel.getPosition().y(),
-                circleModel.getSizeInt(),
+                circleModel.getSize().getValue(),
                 circleModel.getColor());
         c.setStroke(Color.BLACK);
         c.setOnMouseClicked(this::selectShape);
@@ -280,15 +281,25 @@ public class ShapeController {
 
     public void selectShape(MouseEvent mouseEvent) {
         if (!selectMode.isSelected()) return;
+        selectInProgress = true;
         deselectSelectedShape();
         Shape shape = (Shape) mouseEvent.getSource();
         setSelectedShape(shape);
         colorPicker.setValue((Color) shape.getFill());
-        if (shape instanceof Polygon) {
+        if (shape instanceof Polygon polygon) {
             triangleButton.setSelected(true);
-        } else if (shape instanceof Circle) {
+            choiceBox.setValue(
+                    Size.valueOf(
+                            polygon.getPoints().get(2).intValue() - polygon.getPoints().get(0).intValue()
+                    )
+            );
+        } else if (shape instanceof Circle circle) {
             circleButton.setSelected(true);
+            choiceBox.setValue(
+                    Size.valueOf((int) circle.getRadius())
+            );
         }
+        selectInProgress = false;
     }
 
     private void setSelectedShape(Shape shape) {
