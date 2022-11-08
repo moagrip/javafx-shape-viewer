@@ -7,10 +7,7 @@
     <list default="true" id="3ac8072d-3b48-4435-839c-b2c3b3fcabaa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/CircleModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/CircleModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/ShapeModelBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/ShapeModelBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/Size.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/Size.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/TriangleModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/models/TriangleModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lab3/laboration3moagrip/shape-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lab3/laboration3moagrip/shape-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +82,9 @@
       <workItem from="1667236143414" duration="2941000" />
       <workItem from="1667324470833" duration="5399000" />
       <workItem from="1667492378664" duration="13734000" />
-      <workItem from="1667553606023" duration="14122000" />
+      <workItem from="1667553606023" duration="15237000" />
+      <workItem from="1667832873561" duration="4167000" />
+      <workItem from="1667941041183" duration="4931000" />
     </task>
     <servers />
   </component>
@@ -108,10 +107,22 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java</url>
-          <line>195</line>
-          <option name="timeStamp" value="3" />
+          <line>84</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="this.currentState" language="JAVA" />
+        <watch expression="this.previousState" language="JAVA" />
+        <watch expression="shapes.getChildren()" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

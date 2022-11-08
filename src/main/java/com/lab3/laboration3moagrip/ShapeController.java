@@ -17,6 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import javafx.stage.FileChooser;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -33,11 +34,14 @@ public class ShapeController {
     public RadioButton circleButton;
     public CheckBox selectMode;
     public Button saveButton;
+    public Button undoButton;
     private Group shapes;
     private Shape selectedShape;
     private double applicationHeight;
     private double applicationWidth;
     private boolean selectInProgress;
+    private Shape previousState;
+    private Shape currentState;
 
     public void initialize() {
         shapes = new Group();
@@ -74,6 +78,48 @@ public class ShapeController {
         prepareSelectMode();
         prepareColorPicker();
         prepareSaveButton();
+        prepareUndoButton();
+    }
+
+    private void updateState(Shape shape) {
+        previousState = currentState;
+        currentState = shape;
+    }
+
+    private void prepareUndoButton() {
+        undoButton.setOnAction(this::undoLastAction);
+    }
+
+    private void undoLastAction(ActionEvent e) {
+        shapes.getChildren().remove(currentState);
+        if (previousState == null) return;
+
+        String typeString;
+        Size size;
+        Position position;
+        Color color;
+        if (previousState instanceof Circle circle) {
+            typeString = "circle";
+            size = Size.valueOf((int) circle.getRadius());
+            position = getPositionFromShape(circle);
+            color = (Color) circle.getFill();
+        } else if (previousState instanceof Polygon polygon) {
+            typeString = "triangle";
+            size = Size.valueOf(polygon.getPoints().get(2).intValue() - polygon.getPoints().get(0).intValue());
+            position = getPositionFromShape(polygon);
+            color = (Color) polygon.getFill();
+        } else {
+            return;
+        }
+
+        ShapeModel shapeModel = ShapeModelBuilder
+                .newBuilder(typeString)
+                .setSize(size)
+                .setPosition(position)
+                .setColor(color)
+                .build();
+        render(shapeModel);
+
     }
 
     private void prepareSaveButton() {
@@ -193,7 +239,8 @@ public class ShapeController {
         if (selectedShape == null) return;
         if (selectInProgress) return;
         shapes.getChildren().remove(selectedShape);
-        drawShape(selectedShape);
+        currentState = selectedShape;
+        drawShape(getPositionFromShape(selectedShape));
     }
 
     private void render(ShapeModel shapeModel) {
@@ -240,6 +287,7 @@ public class ShapeController {
             deselectSelectedShape();
             setSelectedShape(shape);
         }
+        updateState(shape);
     }
 
     public void drawShape(MouseEvent mouseEvent) {
@@ -250,22 +298,19 @@ public class ShapeController {
         ));
     }
 
-    private void drawShape(Shape shape) {
+    private Position getPositionFromShape(Shape shape) {
         if (shape instanceof Polygon) {
-            drawShape(
-                    new Position(
-                            ((Polygon) shape).getPoints().get(0),
-                            ((Polygon) shape).getPoints().get(1)
-                    )
+            return new Position(
+                    ((Polygon) shape).getPoints().get(0),
+                    ((Polygon) shape).getPoints().get(1)
             );
         } else if (shape instanceof Circle) {
-            drawShape(
-                    new Position(
-                            ((Circle) shape).getCenterX(),
-                            ((Circle) shape).getCenterY()
-                    )
+            return new Position(
+                    ((Circle) shape).getCenterX(),
+                    ((Circle) shape).getCenterY()
             );
         }
+        return new Position(0.0, 0.0);
     }
 
     private void drawShape(Position position) {
