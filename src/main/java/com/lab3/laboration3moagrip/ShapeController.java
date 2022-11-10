@@ -81,63 +81,52 @@ public class ShapeController {
         prepareUndoButton();
     }
 
-    private void updateState(Shape shape) {
-        previousState = currentState;
-        currentState = shape;
+    private void prepareChoiceBox() {
+        ObservableList<Size> sizes = FXCollections.observableArrayList(Size.values());
+        choiceBox.setItems(sizes);
+        choiceBox.setValue(Size.SMALL);
+        choiceBox.getSelectionModel().selectedItemProperty().addListener(
+                (observable, size, t1) -> onChange()
+        );
     }
 
-    private void prepareUndoButton() {
-        undoButton.setOnAction(this::undoLastAction);
+    private void prepareRadioButtons() {
+        circleButton.setSelected(true);
+        radioButtons = new ToggleGroup();
+        circleButton.setToggleGroup(radioButtons);
+        triangleButton.setToggleGroup(radioButtons);
+        radioButtons.selectedToggleProperty().addListener(
+                (observableValue, toggle, t1) -> onChange()
+        );
     }
 
-    private void undoLastAction(ActionEvent e) {
-        shapes.getChildren().remove(currentState);
-        if (previousState == null) return;
+    private void prepareSelectMode() {
+        selectMode.selectedProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if (observable.getValue() == false) {
+                        deselectSelectedShape();
+                    }
+                });
+    }
 
-        String typeString;
-        Size size;
-        Position position;
-        Color color;
-        if (previousState instanceof Circle circle) {
-            typeString = "circle";
-            size = Size.valueOf((int) circle.getRadius());
-            position = getPositionFromShape(circle);
-            color = (Color) circle.getFill();
-        } else if (previousState instanceof Polygon polygon) {
-            typeString = "triangle";
-            size = Size.valueOf(polygon.getPoints().get(2).intValue() - polygon.getPoints().get(0).intValue());
-            position = getPositionFromShape(polygon);
-            color = (Color) polygon.getFill();
-        } else {
-            return;
-        }
+    private void prepareColorPicker() {
+        colorPicker.setValue(Color.LIGHTBLUE);
+        colorPicker.valueProperty().addListener(
+                (observableValue, color, t1) -> onChange()
+        );
+    }
 
-        ShapeModel shapeModel = ShapeModelBuilder
-                .newBuilder(typeString)
-                .setSize(size)
-                .setPosition(position)
-                .setColor(color)
-                .build();
-        render(shapeModel);
-
+    private void onChange() {
+        if (!selectMode.isSelected()) return;
+        if (selectedShape == null) return;
+        if (selectInProgress) return;
+        shapes.getChildren().remove(selectedShape);
+        currentState = selectedShape;
+        drawShape(getPositionFromShape(selectedShape));
     }
 
     private void prepareSaveButton() {
         saveButton.setOnAction(this::saveToSvg);
-    }
-
-    private String polygonToPointsString(Polygon polygon) {
-        return polygon.getPoints().get(0) +
-                "," +
-                polygon.getPoints().get(1) +
-                " " +
-                polygon.getPoints().get(2) +
-                "," +
-                polygon.getPoints().get(3) +
-                " " +
-                polygon.getPoints().get(4) +
-                "," +
-                polygon.getPoints().get(5);
     }
 
     private void saveToSvg(ActionEvent e) {
@@ -182,6 +171,7 @@ public class ShapeController {
         }
         svgData.append("</svg>");
 
+
         try {
             Files.writeString(file.toPath(), svgData.toString());
         } catch (IOException exception) {
@@ -189,58 +179,96 @@ public class ShapeController {
         }
     }
 
-    private String format(double val) {
-        String in = Integer.toHexString((int) Math.round(val * 255));
-        return in.length() == 1 ? "0" + in : in;
+    private String polygonToPointsString(Polygon polygon) {
+        return polygon.getPoints().get(0) +
+                "," +
+                polygon.getPoints().get(1) +
+                " " +
+                polygon.getPoints().get(2) +
+                "," +
+                polygon.getPoints().get(3) +
+                " " +
+                polygon.getPoints().get(4) +
+                "," +
+                polygon.getPoints().get(5);
     }
 
-    public String toHexString(Color value) {
+    public static String toHexString(Color value) {
         return "#" + (format(value.getRed()) + format(value.getGreen()) + format(value.getBlue()) + format(value.getOpacity()))
                 .toUpperCase();
     }
 
-    private void prepareColorPicker() {
-        colorPicker.setValue(Color.LIGHTBLUE);
-        colorPicker.valueProperty().addListener(
-                (observableValue, color, t1) -> onChange()
-        );
+    private static String format(double val) {
+        String in = Integer.toHexString((int) Math.round(val * 255));
+        return in.length() == 1 ? "0" + in : in;
     }
 
-    private void prepareSelectMode() {
-        selectMode.selectedProperty().addListener(
-                (observable, oldValue, newValue) -> {
-                    if (observable.getValue() == false) {
-                        deselectSelectedShape();
-                    }
-                });
+    private void prepareUndoButton() {
+        undoButton.setOnAction(this::undoLastAction);
     }
 
-    private void prepareRadioButtons() {
-        circleButton.setSelected(true);
-        radioButtons = new ToggleGroup();
-        circleButton.setToggleGroup(radioButtons);
-        triangleButton.setToggleGroup(radioButtons);
-        radioButtons.selectedToggleProperty().addListener(
-                (observableValue, toggle, t1) -> onChange()
-        );
+    private void undoLastAction(ActionEvent e) {
+        shapes.getChildren().remove(currentState);
+        if (previousState == null) return;
+
+        String typeString;
+        Size size;
+        Position position;
+        Color color;
+        if (previousState instanceof Circle circle) {
+            typeString = "circle";
+            size = Size.valueOf((int) circle.getRadius());
+            position = getPositionFromShape(circle);
+            color = (Color) circle.getFill();
+        } else if (previousState instanceof Polygon polygon) {
+            typeString = "triangle";
+            size = Size.valueOf(polygon.getPoints().get(2).intValue() - polygon.getPoints().get(0).intValue());
+            position = getPositionFromShape(polygon);
+            color = (Color) polygon.getFill();
+        } else {
+            return;
+        }
+        ShapeModel shapeModel = ShapeModelBuilder
+                .newBuilder(typeString)
+                .setSize(size)
+                .setPosition(position)
+                .setColor(color)
+                .build();
+        render(shapeModel);
     }
 
-    private void prepareChoiceBox() {
-        ObservableList<Size> sizes = FXCollections.observableArrayList(Size.values());
-        choiceBox.setItems(sizes);
-        choiceBox.setValue(Size.SMALL);
-        choiceBox.getSelectionModel().selectedItemProperty().addListener(
-                (observable, size, t1) -> onChange()
-        );
+    private Position getPositionFromShape(Shape shape) {
+        if (shape instanceof Polygon) {
+            return new Position(
+                    ((Polygon) shape).getPoints().get(0),
+                    ((Polygon) shape).getPoints().get(1)
+            );
+        } else if (shape instanceof Circle) {
+            return new Position(
+                    ((Circle) shape).getCenterX(),
+                    ((Circle) shape).getCenterY()
+            );
+        }
+        return new Position(0.0, 0.0);
     }
 
-    private void onChange() {
-        if (!selectMode.isSelected()) return;
-        if (selectedShape == null) return;
-        if (selectInProgress) return;
-        shapes.getChildren().remove(selectedShape);
-        currentState = selectedShape;
-        drawShape(getPositionFromShape(selectedShape));
+    public void drawShape(MouseEvent mouseEvent) {
+        if (selectMode.isSelected()) return;
+        drawShape(new Position(
+                mouseEvent.getSceneX(),
+                mouseEvent.getSceneY()
+        ));
+    }
+
+    private void drawShape(Position position) {
+        RadioButton selectedShapeType = (RadioButton) radioButtons.getSelectedToggle();
+        ShapeModel shapeModel = ShapeModelBuilder
+                .newBuilder(selectedShapeType.getText())
+                .setSize(choiceBox.getValue())
+                .setPosition(position)
+                .setColor(colorPicker.getValue())
+                .build();
+        render(shapeModel);
     }
 
     private void render(ShapeModel shapeModel) {
@@ -290,38 +318,11 @@ public class ShapeController {
         updateState(shape);
     }
 
-    public void drawShape(MouseEvent mouseEvent) {
-        if (selectMode.isSelected()) return;
-        drawShape(new Position(
-                mouseEvent.getSceneX(),
-                mouseEvent.getSceneY()
-        ));
-    }
-
-    private Position getPositionFromShape(Shape shape) {
-        if (shape instanceof Polygon) {
-            return new Position(
-                    ((Polygon) shape).getPoints().get(0),
-                    ((Polygon) shape).getPoints().get(1)
-            );
-        } else if (shape instanceof Circle) {
-            return new Position(
-                    ((Circle) shape).getCenterX(),
-                    ((Circle) shape).getCenterY()
-            );
+    private void deselectSelectedShape() {
+        if (selectedShape != null) {
+            selectedShape.setStroke(Color.BLACK);
+            selectedShape = null;
         }
-        return new Position(0.0, 0.0);
-    }
-
-    private void drawShape(Position position) {
-        RadioButton selectedShapeType = (RadioButton) radioButtons.getSelectedToggle();
-        ShapeModel shapeModel = ShapeModelBuilder
-                .newBuilder(selectedShapeType.getText())
-                .setSize(choiceBox.getValue())
-                .setPosition(position)
-                .setColor(colorPicker.getValue())
-                .build();
-        render(shapeModel);
     }
 
     public void selectShape(MouseEvent mouseEvent) {
@@ -352,10 +353,8 @@ public class ShapeController {
         shape.setStroke(Color.YELLOW);
     }
 
-    private void deselectSelectedShape() {
-        if (selectedShape != null) {
-            selectedShape.setStroke(Color.BLACK);
-            selectedShape = null;
-        }
+    private void updateState(Shape shape) {
+        previousState = currentState;
+        currentState = shape;
     }
 }

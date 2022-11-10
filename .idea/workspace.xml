@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ac8072d-3b48-4435-839c-b2c3b3fcabaa" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/lab3/laboration3moagrip/ShapeControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/lab3/laboration3moagrip/models/ShapeModelBuilderTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/lab3/laboration3moagrip/models/SizeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lab3/laboration3moagrip/shape-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lab3/laboration3moagrip/shape-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +48,13 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.lab3.laboration3moagrip.models" />
+      <recent name="com.lab3.laboration3moagrip" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ShapeApplication">
     <configuration name="ShapeApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.lab3.laboration3moagrip.ShapeApplication" />
       <module name="Laboration3MoaGrip" />
@@ -60,9 +68,74 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ShapeControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Laboration3MoaGrip" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lab3.laboration3moagrip.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lab3.laboration3moagrip" />
+      <option name="MAIN_CLASS_NAME" value="com.lab3.laboration3moagrip.ShapeControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShapeModelBuilderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Laboration3MoaGrip" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lab3.laboration3moagrip.models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lab3.laboration3moagrip.models" />
+      <option name="MAIN_CLASS_NAME" value="com.lab3.laboration3moagrip.models.ShapeModelBuilderTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShapeModelBuilderTest.createNewTriangleModelUsingBuilderAndAssertValues" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Laboration3MoaGrip" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lab3.laboration3moagrip.models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lab3.laboration3moagrip.models" />
+      <option name="MAIN_CLASS_NAME" value="com.lab3.laboration3moagrip.models.ShapeModelBuilderTest" />
+      <option name="METHOD_NAME" value="createNewTriangleModelUsingBuilderAndAssertValues" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SizeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Laboration3MoaGrip" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lab3.laboration3moagrip.models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lab3.laboration3moagrip.models" />
+      <option name="MAIN_CLASS_NAME" value="com.lab3.laboration3moagrip.models.SizeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ShapeApplication" />
+        <item itemvalue="JUnit.ShapeControllerTest" />
+        <item itemvalue="JUnit.SizeTest" />
+        <item itemvalue="JUnit.ShapeModelBuilderTest" />
+        <item itemvalue="JUnit.ShapeModelBuilderTest.createNewTriangleModelUsingBuilderAndAssertValues" />
       </list>
     </recent_temporary>
   </component>
@@ -84,7 +157,7 @@
       <workItem from="1667492378664" duration="13734000" />
       <workItem from="1667553606023" duration="15237000" />
       <workItem from="1667832873561" duration="4167000" />
-      <workItem from="1667941041183" duration="4931000" />
+      <workItem from="1667941041183" duration="12488000" />
     </task>
     <servers />
   </component>
@@ -103,20 +176,6 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/lab3/laboration3moagrip/ShapeController.java</url>
-          <line>114</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="this.currentState" language="JAVA" />
